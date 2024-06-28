@@ -1,3 +1,5 @@
+import { OrderActions } from "../reducers/order-reducer"
+
 const tipOptions = [
   {
     id: 'tip-10',
@@ -17,10 +19,10 @@ const tipOptions = [
 ]
 
 type TipFormatProps = {
-  setTip: React.Dispatch<React.SetStateAction<number>>
+  dispatch: React.Dispatch<OrderActions>
 }
 
-export function TipFormat({ setTip }: TipFormatProps) {
+export function TipFormat({ dispatch }: TipFormatProps) {
 
   return (
     <div>
@@ -34,7 +36,7 @@ export function TipFormat({ setTip }: TipFormatProps) {
               id={tip.id}
               value={tip.value}
               name="tip"
-              onChange={(e) => setTip(+e.target.value)}
+              onChange={(e) => dispatch({ type: 'set-tip', payload: { tip: +e.target.value } })}
             />
           </div>
         ))}
